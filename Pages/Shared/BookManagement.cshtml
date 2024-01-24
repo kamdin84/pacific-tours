@@ -1,51 +1,78 @@
-﻿﻿@page
-@model ccse_cw1.Pages.EditModel
-
+﻿@page
+@model ccse_cw1.Pages.Shared.BookModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Book Management";
 }
 
-<h1>Edit</h1>
+<h2><strong>Book Management</strong></h2>
 
-<h4>Hotel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Hotel.HotelID" />
-            <div class="form-group">
-                <label asp-for="Hotel.HotelID" class="control-label"></label>
-                <select asp-for="Hotel.HotelID" class="form-control" asp-items="ViewBag.HotelID"></select>
-                <span asp-validation-for="Hotel.HotelID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hotel.CustomerID" class="control-label"></label>
-                <input asp-for="Hotel.CustomerID" class="form-control" />
-                <span asp-validation-for="Hotel.UserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hotel.CheckIn" class="control-label"></label>
-                <input asp-for="Hotel.CheckIn" class="form-control" />
-                <span asp-validation-for="Hotel.CheckIn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hotel.CheckOut" class="control-label"></label>
-                <input asp-for="Hotel.CheckOut" class="form-control" />
-                <span asp-validation-for="Hotel.CheckOut" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Booking.Cost" class="control-label"></label>
-                <input asp-for="Booking.Cost" class="form-control" />
-                <span asp-validation-for="Booking.Cost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+
+
+@if (Model != null && Model.Input != null)
+{
+    <div>
+        <h3>Booking Details</h3>
+        <dl class="row">
+            <dt class="col-sm-2">Room Number:</dt>
+            <dd class="col-sm-10">@Model.Input.RoomNumber</dd>
+
+            <dt class="col-sm-2">Hotel Name:</dt>
+            <dd class="col-sm-10">@Model.Input.HotelName</dd>
+
+            <dt class="col-sm-2">Tour Name:</dt>
+            <dd class="col-sm-10">@Model.Input.TourName</dd>
+
+            <dt class="col-sm-2">Tour Start:</dt>
+            <dd class="col-sm-10">@Model.Input.TourStart</dd>
+
+            <dt class="col-sm-2">Package Discount:</dt>
+            <dd class="col-sm-10">@Model.Input.Discount</dd>
+
+            <dt class="col-sm-2">Room Type:</dt>
+            <dd class="col-sm-10">@Model.Input.RoomType</dd>
+
+            <dt class="col-sm-2">Check In:</dt>
+            <dd class="col-sm-10">@Model.Input.CheckIn</dd>
+
+            <dt class="col-sm-2">Check Out:</dt>
+            <dd class="col-sm-10">@Model.Input.CheckOut</dd>
+        </dl>
     </div>
-</div>
+}
 
+<h3>Payment</h3>
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <p>Total Cost: £520</p>
+
+    <p display: none>Deposit: 20%</p>
+    <div class="rounded-bottom" style="background-color: #eee;">
+        <div class="card-body">
+            <p class="mb-4">Your payment details</p>
+
+            <div class="form-outline mb-3">
+                <input type="text" id="formControlLgXM8" class="form-control"
+                       placeholder="1234 5678 1234 5678" />
+                <label class="form-label" for="formControlLgXM8">Card Number</label>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <div class="form-outline">
+                        <input type="password" id="formControlLgExpk8" class="form-control"
+                               placeholder="MM/YYYY" />
+                        <label class="form-label" for="formControlLgExpk8">Expire</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-outline">
+                        <input type="password" id="formControlLgcvv8" class="form-control" placeholder="Cvv" />
+                        <label class="form-label" for="formControlLgcvv8">CVV</label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-info btn-block">Order now</button>
+        </div>
+    </div>
 </div>

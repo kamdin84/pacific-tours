@@ -156,5 +156,27 @@ namespace ccse_cw1.Repositories
         {
             throw new NotImplementedException();
         }
+        public async Task<bool> DeleteBookingAsync(int bookingId)
+        {
+            try
+            {
+                var bookingToDelete = await _context.Booking.FindAsync(bookingId);
+
+                if (bookingToDelete != null)
+                {
+                    _context.Booking.Remove(bookingToDelete);
+                    await _context.SaveChangesAsync();
+                    return true; // Booking successfully deleted
+                }
+
+                return false; // Booking not found
+            }
+            catch (Exception)
+            {
+                // Handle exceptions if necessary
+                return false; // Deletion failed
+            }
+        }
+
     }
 }

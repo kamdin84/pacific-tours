@@ -9,7 +9,6 @@
         public int? RoomNumber { get; set; }
         public string RoomType { get; set; }
         public int? TourID { get; set; }
-        public float Cost { get; set; }
         public int Discount { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime CheckIn { get; set;}
@@ -18,7 +17,6 @@
         public DateTime TourEnd { get; set; }
 
         public ApplicationUser? User { get; set; }
-
-
+        public int Cost { get; internal set; }
     }
 }

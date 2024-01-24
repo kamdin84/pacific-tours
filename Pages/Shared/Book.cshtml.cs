@@ -29,6 +29,7 @@ namespace ccse_cw1.Pages.Shared
             Tours = _bookingRepository.GetTours();
         }
 
+
         public void OnGet()
         {
 
@@ -42,9 +43,12 @@ namespace ccse_cw1.Pages.Shared
             [Display(Name = "Room Number")]
             public int RoomNumber { get; set; }
 
+            public string TourName { get; set; }
 
             [Display(Name = "Hotel")]
             public int HotelID { get; set; }
+
+            public string HotelName { get; set; }
 
             [Display(Name = "Tour")]
             public int TourId { get; set; }
@@ -54,6 +58,8 @@ namespace ccse_cw1.Pages.Shared
 
             [Display(Name = "Package")]
             public int? Discount { get; set; }
+
+            public int Cost { get; set; }
 
             public string RoomType { get; set; }
 
@@ -108,7 +114,7 @@ namespace ccse_cw1.Pages.Shared
 
             if (booking.UserID != null)
             {
-                return Redirect("/BookManagement");
+                return Redirect("/Shared/BookManagement");
             }
 
             return Page();

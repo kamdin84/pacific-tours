@@ -16,7 +16,6 @@ namespace ccse_cw1.Models
         public int AvailableSingle {  get; set; }
         public int AvailableDouble { get; set; }
         public int AvailableFamily { get; set;}
-        
     }
 
     }
