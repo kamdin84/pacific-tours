@@ -42,16 +42,20 @@ namespace ccse_cw1.Pages.Shared
             [Display(Name = "Room Number")]
             public int RoomNumber { get; set; }
 
+
             [Display(Name = "Hotel")]
             public int HotelID { get; set; }
 
             [Display(Name = "Tour")]
             public int TourId { get; set; }
 
+            [Display(Name = "TourStart")]
+            public DateTime? TourStart { get; set; }
+
             [Display(Name = "Package")]
             public int? Discount { get; set; }
 
-            public string? RoomType { get; set; }
+            public string RoomType { get; set; }
 
             [Required(ErrorMessage = "Please select a check-in date")]
             [DataType(DataType.DateTime)]
@@ -63,6 +67,7 @@ namespace ccse_cw1.Pages.Shared
             [Display(Name = "Check out date")]
             public DateTime CheckOut { get; set; }
 
+  
       
 
         }
@@ -72,15 +77,13 @@ namespace ccse_cw1.Pages.Shared
             var IsHotel = !(Input.HotelID == 0);
             var IsTour = !(Input.TourId == 0);
 
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+      
             var BookedRoomCount = _bookingRepository.GetBookedRoomCount(Input.HotelID, Input.RoomType, Input.CheckIn, Input.CheckOut);
             var IsRoomAvailable = BookedRoomCount <= 20;
             if (!IsRoomAvailable)
             {
                 ModelState.AddModelError(string.Empty, "The selected room is full.");
+
                 return Page();
             }
 
@@ -91,20 +94,21 @@ namespace ccse_cw1.Pages.Shared
             if (IsHotel & IsTour)
             {
 
-                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.HotelID, Input.RoomType, Input.TourId);
+                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.TourStart, Input.HotelID, Input.RoomType, Input.TourId);
             }
             else if (IsHotel)
             {
-                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.HotelID, Input.RoomType);
+                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.TourStart, hotelid: Input.HotelID, Input.RoomType);
             }
             else if (IsTour)
             {
-                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, tourid: Input.TourId);
+                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.TourStart, tourid: Input.TourId);
             }
+
 
             if (booking.UserID != null)
             {
-                return Redirect("/BookSuccess");
+                return Redirect("/BookManagement");
             }
 
             return Page();

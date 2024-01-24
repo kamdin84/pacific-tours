@@ -12,8 +12,8 @@ using ccse_cw1.Services;
 namespace ccse_cw1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240124093135_bookingpage")]
-    partial class bookingpage
+    [Migration("20240124115947_FinalMigration")]
+    partial class FinalMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,19 +54,19 @@ namespace ccse_cw1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01988d0c-5983-43f8-b565-9b2a91699dbb",
+                            Id = "352cb7ed-21c1-4bd8-ab49-c4e8f1c80c74",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "354e06fa-c4c2-4d92-9218-60ae6b160e6b",
+                            Id = "ddaf0820-1d2c-49ba-804e-d92f96466e99",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "8406f1ca-deef-4441-a382-411c83c62a51",
+                            Id = "f0a3d68c-a91e-4d55-ab83-4a42e62f4b19",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
@@ -291,11 +291,17 @@ namespace ccse_cw1.Migrations
                     b.Property<int?>("RoomNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("TourDuration")
-                        .HasColumnType("int");
+                    b.Property<string>("RoomType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TourEnd")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("TourID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("TourStart")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserID")
                         .IsRequired()
@@ -432,6 +438,9 @@ namespace ccse_cw1.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("TourEnd")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("TourName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -442,6 +451,9 @@ namespace ccse_cw1.Migrations
                     b.Property<int>("TourSpaces")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("TourStart")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("TourID");
 
                     b.ToTable("Tours");
@@ -451,25 +463,31 @@ namespace ccse_cw1.Migrations
                         {
                             TourID = 1,
                             Duration = 6,
+                            TourEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TourName = "Real Britain",
                             TourPrice = 1200,
-                            TourSpaces = 30
+                            TourSpaces = 30,
+                            TourStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             TourID = 2,
                             Duration = 16,
+                            TourEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TourName = "Britain and Ireland Explorer",
                             TourPrice = 2000,
-                            TourSpaces = 40
+                            TourSpaces = 40,
+                            TourStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             TourID = 3,
                             Duration = 12,
+                            TourEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TourName = "Best of Britain",
                             TourPrice = 2900,
-                            TourSpaces = 30
+                            TourSpaces = 30,
+                            TourStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

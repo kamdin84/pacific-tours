@@ -22,7 +22,7 @@
         <div class="form-group"><label for="check-in-date">Select Check-in Date:&nbsp;&nbsp;</label> <input asp-for="Input.CheckIn" id="check-in-date" type="date" /></div>
         <div class="form-group"><label for="check-out-date">Select Check-out Date:&nbsp;&nbsp;</label> <input asp-for="Input.CheckOut" id="check-out-date" type="date" /></div>
         <div class="form-group">
-            <label for="room-type">Select Room Type:&nbsp;&nbsp;</label><select asp-for="Input.RoomType" id="room-type" onselect="">
+            <label for="room-type">Select Room Type:&nbsp;&nbsp;</label><select asp-for="Input.RoomType" id="room-type">
 
                 <option value="single">Single</option>
                 <option value="double">Double</option>
@@ -45,8 +45,8 @@
                 }
             </select>
         </div>
-        <div class="form-group"><label for="tour-start-date">Select Tour Start Date:&nbsp;&nbsp;</label> <input asp-for="Input.CheckIn" id="tour-start-date" type="date" /></div>
-        <div class="form-group"><label for="tour-end-date">Select Tour End Date:&nbsp;&nbsp;</label> <input asp-for="Input.CheckIn" id="tour-end-date" type="date" /></div>
+        <div class="form-group"><label for="tour-start-date">Select Tour Start Date:&nbsp;&nbsp;</label> <input asp-for="Input.TourStart" id="tour-start-date" type="date" /></div>
+        <div class="form-group"><label for="tour-end-date">Select Tour End Date:&nbsp;&nbsp;</label> <input asp-for="Input.TourStart" id="tour-end-date" type="date" /></div>
         <div class="form-group">&nbsp;</div>
         <div class="form-group"><button class="btn btn-primary" type="submit">Proceed</button></div>
 </form>

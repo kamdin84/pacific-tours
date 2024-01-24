@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ccse_cw1.Pages.Shared
 {
-    public class BookSuccessModel : PageModel
+    public class BookManagementModel : PageModel
     {
         public void OnGet()
         {

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ccse_cw1.Migrations
 {
     /// <inheritdoc />
-    public partial class bookingpage : Migration
+    public partial class FinalMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,9 +83,11 @@ namespace ccse_cw1.Migrations
                     TourID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TourName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TourStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TourPrice = table.Column<int>(type: "int", nullable: false),
                     TourSpaces = table.Column<int>(type: "int", nullable: false),
-                    Duration = table.Column<int>(type: "int", nullable: false)
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    TourEnd = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -207,13 +209,15 @@ namespace ccse_cw1.Migrations
                     UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     HotelID = table.Column<int>(type: "int", nullable: true),
                     RoomNumber = table.Column<int>(type: "int", nullable: true),
+                    RoomType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TourID = table.Column<int>(type: "int", nullable: true),
                     Cost = table.Column<float>(type: "real", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TourDuration = table.Column<int>(type: "int", nullable: false)
+                    TourStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TourEnd = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -231,9 +235,9 @@ namespace ccse_cw1.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "01988d0c-5983-43f8-b565-9b2a91699dbb", null, "admin", "admin" },
-                    { "354e06fa-c4c2-4d92-9218-60ae6b160e6b", null, "client", "client" },
-                    { "8406f1ca-deef-4441-a382-411c83c62a51", null, "seller", "seller" }
+                    { "352cb7ed-21c1-4bd8-ab49-c4e8f1c80c74", null, "admin", "admin" },
+                    { "ddaf0820-1d2c-49ba-804e-d92f96466e99", null, "client", "client" },
+                    { "f0a3d68c-a91e-4d55-ab83-4a42e62f4b19", null, "seller", "seller" }
                 });
 
             migrationBuilder.InsertData(
@@ -251,12 +255,12 @@ namespace ccse_cw1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tours",
-                columns: new[] { "TourID", "Duration", "TourName", "TourPrice", "TourSpaces" },
+                columns: new[] { "TourID", "Duration", "TourEnd", "TourName", "TourPrice", "TourSpaces", "TourStart" },
                 values: new object[,]
                 {
-                    { 1, 6, "Real Britain", 1200, 30 },
-                    { 2, 16, "Britain and Ireland Explorer", 2000, 40 },
-                    { 3, 12, "Best of Britain", 2900, 30 }
+                    { 1, 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Real Britain", 1200, 30, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 16, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Britain and Ireland Explorer", 2000, 40, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 12, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Best of Britain", 2900, 30, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

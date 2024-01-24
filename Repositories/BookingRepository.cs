@@ -43,7 +43,7 @@ namespace ccse_cw1.Repositories
                             !(b.CheckOut <= checkIn || b.CheckIn >= checkOut));
         }
 
-        public async Task<Booking> CreateBookingAsync(string userid, DateTime checkin, DateTime checkout,  int hotelid = 0, string roomtype ="", int tourid = 0)
+        public async Task<Booking> CreateBookingAsync(string userid, DateTime checkin, DateTime checkout, DateTime? tourstart, int hotelid = 0, string roomtype = "", int tourid = 0, int roomnumber = 0)
         {
             var cost = 0;
             var discount = 0;
@@ -57,16 +57,19 @@ namespace ccse_cw1.Repositories
                 {
                     discount = 10;
                     cost += hotel.SinglePrice;
+                    roomnumber = +1;
                 }
                 else if (roomtype == "double")
                 {
                     discount = 20;
                     cost += hotel.DoublePrice;
+                    roomnumber += 1;
                 }
                 else if (roomtype == "family")
                 {
                     discount = 40;
                     cost += hotel.FamilyPrice;
+                    roomnumber += 1;
                 }
             }
 
@@ -83,8 +86,10 @@ namespace ccse_cw1.Repositories
                     {
                         HotelID = hotelid,
                         UserID = userid,
-                        CheckIn = checkin,
+                        TourStart = (DateTime)tourstart,
                         CheckOut = checkout,
+                        RoomType = roomtype,
+                        RoomNumber = roomnumber,
                         CreatedAt = DateTime.Now,
                         TourID = tourid,
                         Discount = discount,
@@ -105,6 +110,8 @@ namespace ccse_cw1.Repositories
                     UserID = userid,
                     CheckIn = checkin,
                     CheckOut = checkout,
+                    RoomType = roomtype,
+                    RoomNumber = roomnumber,
                     CreatedAt = DateTime.Now,
                     TourID = tourid,
                     Discount = 0,
@@ -143,6 +150,11 @@ namespace ccse_cw1.Repositories
             {
                 CreatedAt = DateTime.MinValue
             };
+        }
+
+        internal Task<Booking> CreateBookingAsync(string id, DateTime checkIn, DateTime checkOut, DateTime? tourStart, int tourid, string roomType)
+        {
+            throw new NotImplementedException();
         }
     }
 }
